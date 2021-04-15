@@ -11,4 +11,5 @@ public interface Constants {
     final public static String NUMBER3 = "number3";
     final public static String CHECKBOX = "checkbox";
     final public static int SECONDARY_ACTIVITY_REQUEST_CODE = 1;
+    String SCOR = "scor";
 }

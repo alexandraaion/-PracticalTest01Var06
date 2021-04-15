@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ public class PracticalTest01Var06SecondaryActivity extends AppCompatActivity {
 
     private TextView textView;
     private Button okButton;
+    int scor = 0;
 
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
     private class ButtonClickListener implements View.OnClickListener {
@@ -19,7 +21,7 @@ public class PracticalTest01Var06SecondaryActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.ok_button:
-                    setResult(RESULT_OK, null);
+                    setResult(scor, null);
                     break;
             }
             finish();
@@ -43,10 +45,13 @@ public class PracticalTest01Var06SecondaryActivity extends AppCompatActivity {
 
             if (checkBoxes == 1) {
                 textView.setText("50");
+                scor = 50;
             } else if (checkBoxes == 2) {
                 textView.setText("10");
+                scor = 10;
             } else {
                 textView.setText("100");
+                scor = 100;
             }
 
         }

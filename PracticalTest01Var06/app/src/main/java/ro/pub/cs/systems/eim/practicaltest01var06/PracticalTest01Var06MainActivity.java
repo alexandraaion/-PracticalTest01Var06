@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,6 +26,7 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
 
     Button playButton;
     int nrCheckboxes = 0;
+    int scor = 0;
 
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
     private class ButtonClickListener implements View.OnClickListener {
@@ -83,6 +85,30 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
         playButton = (Button)findViewById(R.id.play_button);
         playButton.setOnClickListener(buttonClickListener);
 
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(Constants.SCOR)) {
+                scor = savedInstanceState.getInt(Constants.SCOR);
+            } else {
+                scor = 0;
+            }
+        } else {
+            scor = 0;
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(Constants.SCOR, scor);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState.containsKey(Constants.SCOR)) {
+            scor = savedInstanceState.getInt(Constants.SCOR);
+        } else {
+            scor = 0;
+        }
     }
 
     @Override
@@ -90,6 +116,7 @@ public class PracticalTest01Var06MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == Constants.SECONDARY_ACTIVITY_REQUEST_CODE) {
             Toast.makeText(this, "The activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
+            scor += resultCode;
         }
     }
 
